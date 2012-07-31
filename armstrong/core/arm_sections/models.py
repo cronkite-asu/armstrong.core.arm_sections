@@ -4,6 +4,7 @@ from django.db import models
 from mptt.models import MPTTModel
 from mptt.fields import TreeForeignKey
 from armstrong.utils.backends import GenericBackend
+from armstrong.apps.related_content.fields import RelatedObjectsField
 
 from .utils import get_section_many_to_many_relations
 
@@ -46,6 +47,8 @@ class Section(MPTTModel):
     full_slug = models.CharField(max_length=255, blank=True)
 
     parent = TreeForeignKey('self', null=True, blank=True)
+
+    related = RelatedObjectsField()
 
     objects = SectionManager()
 

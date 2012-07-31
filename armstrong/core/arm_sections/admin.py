@@ -3,7 +3,7 @@ from mptt.admin import MPTTModelAdmin
 from mptt.forms import TreeNodeChoiceField
 from mptt.forms import TreeNodeMultipleChoiceField
 from mptt.models import MPTTModel
-
+from armstrong.apps.related_content.admin import RelatedContentInline
 from .models import Section
 
 EMPTY_LABEL = u"---------"
@@ -35,6 +35,10 @@ class SectionTreeAdminMixin(object):
 class SectionAdmin(MPTTModelAdmin):
     exclude = ("full_slug", )
     search_fields = ('title', 'summary')
+
+    inlines = [
+            RelatedContentInline,
+        ]
 
 
 admin.site.register(Section, SectionAdmin)
